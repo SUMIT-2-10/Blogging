@@ -5,6 +5,7 @@ const secretKey = "your-very-secure-secret-key"; // Use a strong secret key in p
 const createTokenforUser = (user) => {
     const payload = {
         _id: user._id,
+        fullname: user.fullname,
         email: user.email,
         role: user.role,
         profileImageURL: user.profileImageURL,
