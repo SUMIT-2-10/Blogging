@@ -19,4 +19,18 @@ router.post("/signup", async (req, res) => {
     return res.redirect("/");
 });
 
+router.post("/signin", async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const token = await User.mstchPasswordAndtokenGenerator(email, password);
+        console.log("Login successful:");
+        // TODO: Create session/JWT token here
+        return res.cookie("token", token).redirect("/");
+    } catch (error) {
+        return res.render("signin", { 
+            error: "Invalid email or password" 
+        });
+    }
+});
+
 module.exports = router;
