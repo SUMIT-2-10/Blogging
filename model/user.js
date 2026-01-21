@@ -32,9 +32,9 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true }
 );
 
-userSchema.pre('save', function (next) {
+userSchema.pre('save', async function () {
     const user = this;
-    if (!user.isModified('password')) return; // only hash the password if it has been modified (or is new)`
+    if (!user.isModified('password')) return;
 
     const salt = randomBytes(16).toString();
     const heshedPassword = createHmac('sha256', salt)
@@ -43,8 +43,8 @@ userSchema.pre('save', function (next) {
     
     user.salt = salt;
     user.password = heshedPassword;
-
-    next();
 });
 
 const User = mongoose.model('User', userSchema);
+
+module.exports = User;
