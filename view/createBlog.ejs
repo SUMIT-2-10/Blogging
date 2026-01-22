@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogging</title>
+    <%- include('partials/head') %>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #7c7c7c;
+        }
+
+        h1 {
+            color: #333;
+            margin: 20px;
+        }
+
+        p {
+            margin: 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('partials/nav') %>
+     <div class="signup-container container bg- mt-5">
+            <form action="/blog/create" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="coverImage" class="form-label">Cover Image</label>
+                    <input type="file" class="form-control" name="coverImage" id="coverImage">
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">Title</label>
+                    <input type="text" class="form-control" name="title" id="title">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Content</label>
+                    <textarea class="form-control" name="content" id="content"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Blog</button>
+            </form>
+        </div>
+    <%- include('partials/script') %>
+</body>
+
+</html>
